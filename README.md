@@ -1,41 +1,73 @@
-# Manada Solidaria - Prueba de Concepto de Mapas
+# React + TypeScript + Vite
 
-## Objetivo
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Evaluar la viabilidad técnica de utilizar componentes de mapas interactivos para representar reportes geográficos de animales perdidos o encontrados dentro del proyecto Manada Solidaria.
+Currently, two official plugins are available:
 
-## Tecnologías
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-- React
-- Vite
-- OpenStreetMap
+## React Compiler
 
-## Funcionalidades previstas
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- Visualización de mapa interactivo.
-- Marcadores geográficos.
-- Información asociada a cada marcador.
-- Navegación y zoom.
-- Evaluación de experiencia de usuario y facilidad de integración.
+## Expanding the ESLint configuration
 
-## Estado
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-En desarrollo.
-## ¿Qué es Mapcn?
-Mapcn es una biblioteca de componentes para React orientada a la construcción de mapas interactivos. Internamente utiliza MapLibre GL  para renderizar el mapa, el cual utiliza un documento de estilo para definir la apariencia visual del mismo, y requiere Tailwind CSS junto con shadcn/ui para su integración visual. Esto implica que la adopción de Mapcn dentro del proyecto requiere utilizar dichas tecnologías como dependencias del frontend.
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## Instalación 
-Ejecutar el comando para añadir el componente de mapa: npx shadcn@latest add @mapcn/map
-Componente de mapa:
-import { Map, MapControls } from "@/components/ui/map";
-import { Card } from "@/components/ui/card";
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-export function MyMap() {
-  return (
-    <Card className="h-[320px] p-0 overflow-hidden">
-      <Map center={[-74.006, 40.7128]} zoom={11}>
-        <MapControls />
-      </Map>
-    </Card>
-  );
-}
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
