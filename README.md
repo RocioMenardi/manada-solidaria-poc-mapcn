@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# Manada Solidaria - PoC Mapcn
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Objetivo
 
-Currently, two official plugins are available:
+Evaluar la viabilidad técnica de utilizar el componente Mapcn para representar geográficamente reportes de animales perdidos o encontrados dentro del proyecto Manada Solidaria.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnología evaluada
 
-## React Compiler
+Mapcn es una colección de componentes para React orientada a la creación de mapas interactivos.
+Características identificadas durante la investigación:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Utiliza MapLibre GL como motor de renderizado de mapas.
+- Permite utilizar distintos proveedores de mapas compatibles con MapLibre.
+- No requiere API Keys para su configuración básica.
+- Integra soporte para temas claros y oscuros.
+- Está diseñado para funcionar con Tailwind CSS y shadcn/ui.
 
-## Expanding the ESLint configuration
+## Entorno utilizado
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js v24.16.0
+- React
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- shadcn/ui
+- mapcn
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Instalación realizada
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Creación del proyecto React utilizando Vite.
+2. Instalación y configuración de Tailwind CSS.
+3. Inicialización de shadcn/ui.
+4. Instalación del componente de mapa mediante:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npx shadcn@latest add @mapcn/map
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Estado actual
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [x] Proyecto React funcionando.
+- [x] Tailwind configurado.
+- [x] shadcn/ui configurado.
+- [x] mapcn instalado.
+- [ ] Visualización del mapa.
+- [ ] Prueba de marcadores.
+- [ ] Prueba de eventos interactivos.
+- [ ] Evaluación final.
